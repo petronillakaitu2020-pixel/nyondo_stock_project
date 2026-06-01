@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid mt-4">
+    <h2 class="mb-4">
+        Reports Dashboard
+    </h2>
+    <!-- SUMMARY CARDS -->
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    <h5>Today's Sales</h5>
+                    <h3>
+                        UGX {{ total_sales_today }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+       
+        <div class="col-md-3 mb-3">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <h5>Pending Debts</h5>
+                    <h3>
+                        UGX {{ total_pending_debt }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+
+            <div class="card bg-warning text-dark shadow">
+
+                <div class="card-body">
+
+                    <h5>Supplier Balances</h5>
+
+                    <h3>
+                        UGX {{ total_supplier_balance }}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SECOND ROW -->
+    <div class="row mt-3">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-dark text-white">
+
+                    Low Stock Alerts
+
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Product</th>
+                                <th>Remaining</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for product in low_stock_products %}
+
+                            <tr>
+
+                                <td>
+                                    {{ product.product_name }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        {{ product.quantity }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="2">
+                                    No low stock alerts
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    Recent Sales
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sale in recent_sales %}
+                            <tr>
+                                <td>
+                                    {{ sale.customer.name }}
+                                </td>
+                                <td>
+                                    UGX {{ sale.final_total }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

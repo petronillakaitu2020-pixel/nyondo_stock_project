@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow p-5" id="receipt">
+
+        <h2 class="text-center">
+            NYONDO HARDWARE
+        </h2>
+
+        <hr>
+
+        <p>
+            <strong>Invoice:</strong>
+            {{ sale.invoice_no }}
+        </p>
+
+        <p>
+            <strong>Customer:</strong>
+            {{ sale.customer.name }}
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            {{ sale.created_at }}
+        </p>
+
+        <table class="table table-bordered">
+
+            <thead>
+
+                <tr>
+
+                    <th>Product</th>
+                    <th>Specification</th>
+                    <th>Color</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Unit Cost</th>
+                    <th>Total</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in sale.items.all %}
+
+                <tr>
+
+                    <td>{{ item.product.get_product_name_display }}</td>
+
+                    <td>{{ item.specification }}</td>
+
+                    <td>{{ item.color }}</td>
+
+                    <td>{{ item.unit }}</td>
+
+                    <td>{{ item.quantity }}</td>
+
+                    <td>{{ item.unit_price }}</td>
+
+                    <td>{{ item.total_price }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <h4 class="text-end">
+
+            Final Total:
+            UGX {{ sale.final_total }}
+
+        </h4>
+
+    </div>
+
+    <button onclick="window.print()"
+            class="btn btn-primary mt-3">
+
+        Print Receipt
+
+    </button>
+
+</div>
+
+{% endblock %}

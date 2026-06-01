@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="bg-dark text-white p-4">
+          <h2 class="mb-0">Add New Product</h2>
+
+          <small> NYONDO Hardware Inventory System </small>
+        </div>
+
+        <div class="p-5 bg-light">
+          <form method="POST">
+            {% csrf_token %}
+             {{form|crispy}}
+              <button type="submit" class="btn btn-primary btn-lg"> 
+                save product
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-4">
+        <div class="d-flex justify-content-between mb-3">
+            <h3>Deposit Accounts</h3>
+        </div>
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Total Debt</th>
+                    <th>Paid</th>
+                    <th>Balance</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deposit in deposits %}
+                <tr>
+                    <td>{{ deposit.customer.name }}</td>
+                    <td>
+                        {{ deposit.customer.customer_type }}
+                    </td>
+                    <td>
+                        UGX {{ deposit.total_amount }}
+                    </td>
+                    <td>
+                        UGX {{ deposit.amount_paid }}
+                    </td>
+                    <td>
+                        UGX {{ deposit.balance }}
+                    </td>
+                    <td>
+                        {% if deposit.status == 'paid' %}
+                            <span class="badge bg-success">
+                                Paid
+                            </span>
+                        {% else %}
+                            <span class="badge bg-danger">
+                                Pending
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a
+                            href="{% url 'deposit_detail' deposit.id %}"
+                            class="btn btn-info btn-sm">
+                            View
+                        </a>
+                        <a
+                            href="{% url 'delete_deposit' deposit.id %}"
+                            class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        No deposit accounts from database
+                    </td>
+                </tr>               {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

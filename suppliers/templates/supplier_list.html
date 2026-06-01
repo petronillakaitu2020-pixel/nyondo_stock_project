@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div class="card p-4">
+    <div class="d-flex justify-content-between mb-3">
+      <h3>Suppliers</h3>
+
+      <a href="{% url 'add_supplier' %}" class="btn btn-primary">
+        Add Supplier
+      </a>
+    </div>
+
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Company</th>
+          <th>Contact Person</th>
+          <th>Phone</th>
+          <th>Location</th>
+          <th>Total Amount</th>
+          <th>Paid</th>
+          <th>Balance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for supplier in suppliers %}
+
+        <tr>
+          <td>{{ supplier.company_name }}</td>
+
+          <td>{{ supplier.contact_person }}</td>
+
+          <td>{{ supplier.phone_number }}</td>
+
+          <td>{{ supplier.location }}</td>
+
+          <td>UGX {{ supplier.total_supplied_amount }}</td>
+
+          <td>UGX {{ supplier.amount_paid }}</td>
+
+          <td>UGX {{ supplier.balance }}</td>
+
+          <td>
+            {% if supplier.payment_status == 'paid' %}
+
+            <span class="badge bg-success"> Paid </span>
+            {% else %}
+            <span class="badge bg-danger"> Pending </span>
+            {% endif %}
+          </td>
+          <td class="align-middle text-end" style="width: 120px">
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-outline-secondary dropdown-toggle py-1 px-2"
+                type="button"
+                id="dropdownMenu{{ forloop.counter }}"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 0.85rem"
+              >
+                Actions
+              </button>
+
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow-sm"
+                aria-labelledby="dropdownMenu{{ forloop.counter }}"
+              >
+                <li>
+                  <a
+                    class="dropdown-item text-success fw-bold"
+                    href="{% url 'add_supplier_payment' supplier.id %}"
+                  >
+                    <i class="bi bi-cash-stack me-2"></i>Pay Supplier
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item text-info"
+                    href="{% url 'supplier_detail' supplier.id %}"
+                  >
+                    <i class="bi bi-eye me-2"></i>View
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item text-warning"
+                    href="{% url 'edit_supplier' supplier.id %}"
+                  >
+                    <i class="bi bi-pencil me-2"></i>Edit
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item text-danger"
+                    href="{% url 'delete_supplier' supplier.id %}"
+                  >
+                    <i class="bi bi-trash me-2"></i>Delete
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+ {%if messages %} 
+ <div class="container-fluid mt-3">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissiblefade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>   
+       </div>
+       {% endfor %}
+ </div>
+ {% endif %}
+<div class="container mt-4">
+
+    <div class="card shadow p-4">
+
+        <h3>Invoice: {{ sale.invoice_no }}</h3>
+
+        <hr>
+
+        <p>
+            <strong>Customer:</strong>
+            {{ sale.customer.name }}
+        </p>
+
+        <p>
+            <strong>Location:</strong>
+            {{ sale.customer.location }}
+        </p>
+
+        <p>
+            <strong>Distance:</strong>
+            {{ sale.customer.distance_km }} KM
+        </p>
+
+        <hr>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <button class="btn btn-primary">
+                Add Product
+            </button>
+
+        </form>
+
+        <hr>
+
+        <table class="table table-bordered">
+
+            <thead>
+
+                <tr>
+
+                    <th>Product</th>
+                    <th>Specification</th>
+                    <th>Color</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Unit Cost</th>
+                    <th>Total</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in items %}
+
+                <tr>
+
+                    <td>{{ item.product.get_product_name_display }}</td>
+                    <td>{{ item.specification }}</td>
+                    <td>{{ item.color }}</td>
+                    <td>{{ item.unit }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.unit_price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr>
+        <h5>Subtotal: {{ sale.subtotal }}</h5>
+        <h5>Transport: {{ sale.transport_charge }}</h5>
+        <h4>Final Total: {{ sale.final_total }}</h4>
+        <h4>Balance: {{ sale.balance }}</h4>
+        <div class="mt-4 pt-3 border-top">
+            <form action="{% url 'finalise_sale' sale.id %}" method="POST" class="col-md-5">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="amount_paid" class="form-label">
+                        <strong>Amount Paid by Customer (UGX)*<strong>
+                    </label>                               
+                 </div>
+                 <button type="submit" class="btn btn-success btn-lg w-100">
+                    Finish sale & print Invoice</button>
+                        </form>
+</div>
+
+{% endblock %}

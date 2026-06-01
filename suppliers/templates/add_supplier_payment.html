@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card p-4">
+
+        <h3>
+
+            Pay Supplier
+
+        </h3>
+
+        <hr>
+
+        <p>
+            <strong>Supplier:</strong>
+            {{ supplier.company_name }}
+        </p>
+
+        <p>
+            <strong>Current Balance:</strong>
+            UGX {{ supplier.balance }}
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <button class="btn btn-success w-100">
+
+                Save Payment
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

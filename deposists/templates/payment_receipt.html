@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-5">
+        <h2 class="text-center">
+            PAYMENT RECEIPT
+        </h2>
+        <hr>
+        <h5>Customer Details</h5>
+        <p>
+            <strong>Name:</strong>
+            {{ deposit.customer.name }}
+        </p>
+        <p>
+            <strong>Phone:</strong>
+            {{ deposit.customer.phone }}
+        </p>
+        <p>
+            <strong>NIN:</strong>
+            {{ deposit.customer.nin }}
+        </p>
+        <p>
+            <strong>Customer Type:</strong>
+            {{ deposit.customer.customer_type }}
+        </p>
+        <hr>
+        <h5>Payment Details</h5>
+        <p>
+            <strong>Amount Paid:</strong>
+            UGX {{ payment.amount }}
+        </p>
+        <p>
+            <strong>Date:</strong>
+            {{ payment.payment_date }}
+        </p>
+        <p>
+            <strong>Total Debt:</strong>
+            UGX {{ deposit.total_amount }}
+        </p>
+        <p>
+            <strong>Total Paid:</strong>
+            UGX {{ deposit.amount_paid }}
+        </p>
+        <h4 class="text-danger">
+            Remaining Balance:
+            UGX {{ deposit.balance }}
+        </h4>
+        <hr>
+        <button
+            onclick="window.print()"
+            class="btn btn-dark w-100">
+            Print Receipt
+        </button>
+    </div>
+</div>
+{% endblock %}
