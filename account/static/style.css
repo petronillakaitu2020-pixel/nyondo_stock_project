@@ -1,138 +1,123 @@
+/* Base Page Layout */
+body {
+    margin: 0;
+    padding: 0;
+    /* min-height lets the page stretch if errors pop up, preventing clipping */
+    min-height: 100vh; 
+    
+    /* Your ultra-clean deep slate/blue gradient background */
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #2563eb
+    );
+    
+    /* Flawless centering across all desktop and mobile devices */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Glassmorphism Centered Card */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Added Safari support support */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 45px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Typography Elements */
+.brand-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.brand-subtitle {
+    color: #d1d5db;
+    margin-top: 8px;
+    margin-bottom: 25px;
+}
+
+/* Django Crispy / Bootstrap Input Customization */
+.form-control {
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: white !important; /* Forces typed username/password text to be white */
+}
+
+/* Fixes the black text bug when clicking into inputs */
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.2);
+    color: white !important;
+    box-shadow: none;
+    border: 1px solid #60a5fa;
+}
+
+/* Keeps placeholders readable but elegant against the glass */
+.form-control::placeholder {
+    color: #d1d5db;
+    opacity: 0.8;
+}
+
+/* Label text positioning */
+label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: white;
+}
+
+/* Interactive Action Button */
+.btn-login {
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background: #3b82f6;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Footer / Create Account Styling */
+.register-link {
+    color: #bfdbfe;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.register-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Centered Icon Badge */
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto; /* Centers the icon perfectly horizontally */
+    font-size: 35px;
+}
 
 
-body{
-     margin:0;
-     padding:0;
-     height:100vh;
-    overflow:hidden;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0f172a,
-                    #1e293b,
-                    #2563eb
-                );
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
-
-        .login-card{
-
-            width:100%;
-            max-width:420px;
-
-            background:rgba(255,255,255,0.12);
-
-            backdrop-filter:blur(15px);
-
-            border:1px solid rgba(255,255,255,0.2);
-
-            border-radius:25px;
-
-            padding:45px;
-
-            box-shadow:
-                0 8px 32px rgba(0,0,0,0.3);
-
-            color:white;
-        }
-
-        .brand-title{
-            font-size:32px;
-            font-weight:700;
-        }
-
-        .brand-subtitle{
-            color:#d1d5db;
-            margin-top:8px;
-        }
-
-        .form-control{
-
-            height:50px;
-
-            border-radius:12px;
-
-            border:none;
-
-            background:rgba(255,255,255,0.15);
-
-            color:white;
-        }
-
-        .form-control:focus{
-
-            background:rgba(255,255,255,0.2);
-
-            color:white;
-
-            box-shadow:none;
-
-            border:1px solid #60a5fa;
-        }
-
-        .form-control::placeholder{
-            color:#d1d5db;
-        }
-
-        label{
-            margin-bottom:8px;
-            font-weight:500;
-        }
-
-        .btn-login{
-
-            height:50px;
-
-            border:none;
-
-            border-radius:12px;
-
-            background:#3b82f6;
-
-            font-weight:600;
-
-            transition:0.3s;
-        }
-
-        .btn-login:hover{
-
-            background:#2563eb;
-
-            transform:translateY(-2px);
-        }
-
-        .register-link{
-
-            color:#bfdbfe;
-
-            text-decoration:none;
-
-            font-weight:500;
-        }
-
-        .register-link:hover{
-            color:white;
-        }
-
-        .logo-circle{
-
-            width:80px;
-            height:80px;
-
-            background:rgba(255,255,255,0.15);
-
-            border-radius:50%;
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-
-            margin:auto;
-            margin-bottom:20px;
-
-            font-size:35px;
-        }

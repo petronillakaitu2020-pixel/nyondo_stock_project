@@ -30,7 +30,7 @@
             overflow:hidden;
 
             box-shadow:
-                0 15px 50px rgba(15,23,42,0.08);
+                0 15px 50px rgba(71, 94, 146, 0.08);
 
             display:grid;
 
@@ -41,7 +41,7 @@
 
         .left-panel{
 
-    background:#0f172a;
+    background:#302f68;
     color:white;
 
     padding:60px 45px;
