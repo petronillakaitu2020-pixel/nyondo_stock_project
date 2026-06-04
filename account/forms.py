@@ -25,6 +25,7 @@ class RegisterForm(UserCreationForm):
             'role': forms.Select(attrs={'class': 'form-select'}),
             'nin': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter NIN Number'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Phone Number'}),
+            
         }
 
     # VALIDATE NIN
